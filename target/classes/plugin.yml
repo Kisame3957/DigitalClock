@@ -1,0 +1,70 @@
+name: DigitalClock
+main: cz.perwin.digitalclock.DigitalClock
+author: PerwinCZ
+version: 2.0
+api-version: '1.20'
+commands:
+  digitalclock:
+    description: Use more arguments for this command
+    usage: /digitalclock (arguments)  
+  dc:
+    description: Alias of /digitalclock
+    usage: /dc (arguments)
+permissions:
+  digitalclock.create:
+    description: Allows you to create a new clock 
+  digitalclock.remove:
+    description: Allows you to remove an existing clock 
+  digitalclock.rotate:
+    description: Allows you to rotate an existing clock 
+  digitalclock.material.*:
+    description: Allows you to change the material of an existing clock 
+  digitalclock.fill.*:
+    description: Allows you to change the filling material of an existing clock 
+  digitalclock.move:
+    description: Allows you to move an existing clock to the clicked coords
+  digitalclock.tp:
+    description: Allows you to teleport self to an existing clock's location  
+  digitalclock.stopclocks:
+    description: Allows you to stop all clocks on the server     
+  digitalclock.runclocks:
+    description: Allows you to run all stopped clocks on the server  
+  digitalclock.list:
+    description: Allows you to show the list of existing clocks   
+  digitalclock.reload:
+    description: Allows you to reload config.yml file   
+  digitalclock.help:
+    description: Allows you to show the plugin command helper     
+  digitalclock.depth:
+    description: Allows you to set depth of your clock
+  digitalclock.off:
+    description: Allows you to disable DigitalClock plugin
+  digitalclock.limit.*:
+    description: Sets the limit of clocks per player 
+  digitalclock.addingminutes:
+    description: Allows you to add minutes on your clock  
+  digitalclock.toggleampm:
+    description: Allows you to toggle showing AM/PM 
+  digitalclock.toggleseconds:
+    description: Allows you to toggle showing seconds    
+  digitalclock.toggleingametime:
+    description: Allows you to toggle showing of ingame time
+  digitalclock.settime:
+    description: Allows you to set time on specified clock
+  digitalclock.toggleblinking:
+    description: Allows you to toggle blinking of colon (:)
+  digitalclock.setcountdown:
+    description: Allows you to set countdown mode on clock 
+  digitalclock.disablecountdown:
+    description: Allows you to disable countdown mode on clock   
+  digitalclock.setstopwatch:
+    description: Allows you to set stopwatch mode on clock
+  digitalclock.disablestopwatch:
+    description: Allows you to disable stopwatch mode on clock
+  digitalclock.toggleingametime:
+    description: Allows you to toggle showing of world (ingame) time   
+  digitalclock.update:
+    description: Allows you to update plugin to a newer version
+    
+    
+                 

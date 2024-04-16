@@ -35,7 +35,7 @@ public class CommandMaterial extends MaterialCommand implements ICommand {
 
 	@Override
 	public String reactBadArgsSize(String usedCmd) {
-		return ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " Correct usage: '/"+ usedCmd + " material <name> <material id:data>'";
+		return ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " Correct usage: '/"+ usedCmd + " material <name> <material>'";
 	}
 
 	@Override

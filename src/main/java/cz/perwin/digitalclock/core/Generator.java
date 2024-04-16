@@ -314,7 +314,7 @@ public class Generator {
 						online.sendBlockChange(newLoc, mat, md);
 					} else {
 						newBlock.setType(mat);
-						newBlock.setData(md);
+						//newBlock.setData(md);
 					}
 				}
 			}
@@ -328,7 +328,7 @@ public class Generator {
 				Location newLoc = ca.getLocation(p, 0, i, de);
 				Block newBlock = newLoc.getBlock();
 				newBlock.setType(f);
-				newBlock.setData(fd);
+				//newBlock.setData(fd);
 			}
 		}
 	}
@@ -362,7 +362,7 @@ public class Generator {
 					Material mat = Material.valueOf(data[0]);
 					byte md = (byte) Integer.parseInt(data[1]);
 					newLoc.getBlock().setType(mat);
-					newLoc.getBlock().setData(md);
+					//newLoc.getBlock().setData(md);
 					if(Generator.getGenerator().getMain().shouldGenerateSeparately()) {
 						for(Player online : Bukkit.getServer().getOnlinePlayers()) {
 							online.sendBlockChange(newLoc, mat, md);

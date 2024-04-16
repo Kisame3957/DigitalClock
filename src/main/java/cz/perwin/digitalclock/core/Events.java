@@ -81,6 +81,8 @@ public class Events implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent evt) {
+		//DISABLED//
+		/*
 		if(this.i.versionWarning()) {
 			if(evt.getPlayer().isOp() || evt.getPlayer().hasPermission("digitalclock.update")) {
 				if(!Version.getActualVersion().getVersion().equals(this.i.getDescription().getVersion())) {
@@ -88,6 +90,7 @@ public class Events implements Listener {
 				}
 			}
 		}
+		 */
 	}
 	
 	@EventHandler

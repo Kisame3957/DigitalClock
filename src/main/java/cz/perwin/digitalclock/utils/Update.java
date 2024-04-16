@@ -36,7 +36,7 @@ public class Update {
 		this.projectID = projectID;
 		this.apiKey = apiKey;
 
-		this.actualize();
+		//this.actualize();
 	}
 
 	public void actualize() {

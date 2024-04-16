@@ -99,11 +99,11 @@ public class Clock {
 		this.clockMode = b ? ClockMode.INGAMETIME : ClockMode.NORMAL;
 		this.write();
 	}
-	
+
 	@SuppressWarnings("deprecation")
-	public Material setFillingMaterial(int id, int md) {
-		this.fillingMaterial = Material.getMaterial(id);
-		this.fillingData = (byte) md;
+	public Material setFillingMaterial(Material m) {
+		this.fillingMaterial = m;
+		//this.fillingData = (byte) md;
 		this.write();
 		return this.fillingMaterial;
 	}
@@ -155,9 +155,9 @@ public class Clock {
     }
     
     @SuppressWarnings("deprecation")
-	public Material changeMaterial(int id, int md) {
-    	this.material = Material.getMaterial(id);
-    	this.data = (byte) md;
+	public Material changeMaterial(Material m) {
+    	this.material = m;
+    	//this.data = (byte) md;
     	this.writeAndGenerate();
 		return this.material;
     }

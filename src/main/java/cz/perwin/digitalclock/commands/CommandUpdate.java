@@ -54,6 +54,7 @@ public class CommandUpdate implements ICommand {
 
 	@Override
 	public void process(DigitalClock main, Player player, String[] args) {
-		Version.update(player, DigitalClock.getMessagePrefix(), main.getDescription().getVersion(), main.getDescription().getName());
+		player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " Update command is currently disabled!");
+		//Version.update(player, DigitalClock.getMessagePrefix(), main.getDescription().getVersion(), main.getDescription().getName());
 	}
 }

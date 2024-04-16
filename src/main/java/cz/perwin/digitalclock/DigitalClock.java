@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -24,7 +25,7 @@ import cz.perwin.digitalclock.core.Events;
 import cz.perwin.digitalclock.core.Generator;
 import cz.perwin.digitalclock.utils.Metrics;
 
-public class DigitalClock extends JavaPlugin {
+public final class DigitalClock extends JavaPlugin {
     private Map<Player, String> enableBuildUsers = new HashMap<Player, String>();
     private Map<Player, String> enableMoveUsers = new HashMap<Player, String>();
     private Map<String, Integer> usersClock = new HashMap<String, Integer>();
@@ -40,7 +41,8 @@ public class DigitalClock extends JavaPlugin {
 	private boolean protectClocks;
 	private long generatorAccuracy = 0;
 	private Generator generator;
-	
+
+	/*
 	static {
 		System.out.println("[DigitalClock] Preparing DigitalClock for loading...");
 		File pluginDir = new File("plugins/DigitalClock");
@@ -70,7 +72,9 @@ public class DigitalClock extends JavaPlugin {
 			thread.start();
 		}
 	}
-	
+		 */
+
+	@Override
 	public void onEnable() {
 		this.console.info("[DigitalClock] Plugin has been enabled!");
 		// PREPARING SERVER
@@ -82,7 +86,8 @@ public class DigitalClock extends JavaPlugin {
 		
 		// CHECK VERSION
 		if(this.getConfig().getBoolean("enableVersionOnStartChecking", true)) {
-			Version.check(this.getDescription().getVersion());
+			// DISABLED //
+			//Version.check(this.getDescription().getVersion());
 		}
 		
 		// LOADING CLASSES
@@ -102,7 +107,8 @@ public class DigitalClock extends JavaPlugin {
 			this.console.severe(e + "");
 		}
 	}
-	
+
+	@Override
 	public void onDisable() {
 		this.getServer().getScheduler().cancelTasks(this);
 		this.console.info("[DigitalClock] Plugin has been disabled!");
@@ -148,7 +154,8 @@ public class DigitalClock extends JavaPlugin {
 	
 	public void reloadClocksConf() {
 	    setClocksConf(YamlConfiguration.loadConfiguration(clocksFile));
-	    InputStream defConfigStream = this.getResource("clocks.yml");
+	    //InputStream defConfigStream = this.getResource("clocks.yml");
+		File defConfigStream = new File(Bukkit.getServer().getPluginManager().getPlugin("DigitalClock").getDataFolder(), File.separator + "config.yml");
 	    if(defConfigStream != null) {
 	        @SuppressWarnings("deprecation")
 			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);

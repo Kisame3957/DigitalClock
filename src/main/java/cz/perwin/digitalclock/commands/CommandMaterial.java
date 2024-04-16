@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import cz.perwin.digitalclock.DigitalClock;
 import cz.perwin.digitalclock.core.Clock;
 
-public class CommandFill extends MaterialCommand implements ICommand {
+public class CommandMaterial extends MaterialCommand implements ICommand {
 	@Override
 	public int getArgsSize() {
 		return 3;
@@ -15,7 +15,7 @@ public class CommandFill extends MaterialCommand implements ICommand {
 
 	@Override
 	public String getPermissionName() {
-		return "digitalclock.fill";
+		return "digitalclock.material";
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class CommandFill extends MaterialCommand implements ICommand {
 
 	@Override
 	public String reactBadArgsSize(String usedCmd) {
-		return ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " Correct usage: '/"+ usedCmd + " fill <name> <material id:data>'";
+		return ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " Correct usage: '/"+ usedCmd + " material <name> <material id:data>'";
 	}
 
 	@Override
@@ -57,31 +57,31 @@ public class CommandFill extends MaterialCommand implements ICommand {
 	@Override
 	public void process(DigitalClock main, Player player, String[] args) {
 		Clock clock = Clock.loadClockByClockName(args[1]);
-		String oldmat = clock.getFillingMaterial().name().toLowerCase().replace("_", " ");
-		if(super.isUsableNumber(args[2])) {
-			Material m = Material.getMaterial(Integer.parseInt(args[2]));
+		String oldmat = clock.getMaterial().name().toLowerCase().replace("_", " ");
+		if(super.isUsableName(args[2])) {
+			Material m = Material.getMaterial(args[2]);
 			if(super.isSolid(m)) {
-				player.sendMessage(ChatColor.DARK_GREEN + DigitalClock.getMessagePrefix() + ChatColor.GREEN + " Your clock '" + args[1] + "' changed filling material from " + oldmat + " to "+ clock.setFillingMaterial(m.getId(), 0).name().toLowerCase().replace("_", " "));
+				player.sendMessage(ChatColor.DARK_GREEN + DigitalClock.getMessagePrefix() + ChatColor.GREEN + " Your clock '" + args[1] + "' changed material from " + oldmat + " to "+ clock.changeMaterial(m).name().toLowerCase().replace("_", " "));
 			} else {
 				player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " You can't use "+ m.name().toLowerCase().replace("_", " ") +" as a material, because it is not a block (cuboid shape)!");	
 			}
 		} else {
 			if(args[2].contains(":")) {
 				String[] matdata = args[2].split(":");
-				if(super.isUsableNumber(matdata[1])) {
-					if(super.isUsableNumber(matdata[0])) {
-						Material m = Material.getMaterial(Integer.parseInt(matdata[0]));
+				if(super.isUsableName(matdata[1])) {
+					if(super.isUsableName(matdata[0])) {
+						Material m = Material.getMaterial(matdata[0]);
 						if(super.isSolid(m)) {
-							player.sendMessage(ChatColor.DARK_GREEN + DigitalClock.getMessagePrefix() + ChatColor.GREEN + " Your clock '" + args[1] + "' changed filling material from " + oldmat + " to "+ clock.setFillingMaterial(m.getId(), Integer.parseInt(matdata[1])).name().toLowerCase().replace("_", " "));
+							player.sendMessage(ChatColor.DARK_GREEN + DigitalClock.getMessagePrefix() + ChatColor.GREEN + " Your clock '" + args[1] + "' changed material from " + oldmat + " to "+ clock.changeMaterial(m).name().toLowerCase().replace("_", " "));
 						} else {
-							player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " You can't use "+ m.name().toLowerCase().replace("_", " ") +" as a filling material, because it is not a block (cuboid shape)!");	
+							player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " You can't use "+ m.name().toLowerCase().replace("_", " ") +" as a material, because it is not a block (cuboid shape)!");	
 						}
 					} else {
 						try {
 							Material m = Material.valueOf(matdata[0].toUpperCase());
 							if(m != null) {
 								if(super.isSolid(m)) {
-									player.sendMessage(ChatColor.DARK_GREEN + DigitalClock.getMessagePrefix() + ChatColor.GREEN + " Your clock '" + args[1] + "' changed filling material from " + oldmat + " to "+ clock.setFillingMaterial(m.getId(), Integer.parseInt(matdata[1])).name().toLowerCase().replace("_", " "));
+									player.sendMessage(ChatColor.DARK_GREEN + DigitalClock.getMessagePrefix() + ChatColor.GREEN + " Your clock '" + args[1] + "' changed material from " + oldmat + " to "+ clock.changeMaterial(m).name().toLowerCase().replace("_", " "));
 								} else {
 									player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " You can't use "+ m.name().toLowerCase().replace("_", " ") +" as a material, because it is not a block (cuboid shape)!");			
 								}
@@ -89,7 +89,7 @@ public class CommandFill extends MaterialCommand implements ICommand {
 								player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " Material "+ matdata[0] +" does not exist!");
 							}
 						} catch(IllegalArgumentException e) {
-							player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " Material '"+ args[2] +"' does not exist!");
+							player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " Material '"+ matdata[0] +"' does not exist!");
 						}
 					}
 				} else {
@@ -100,7 +100,7 @@ public class CommandFill extends MaterialCommand implements ICommand {
 					Material m = Material.valueOf(args[2].toUpperCase());
 					if(m != null) {
 						if(super.isSolid(m)) {
-							player.sendMessage(ChatColor.DARK_GREEN + DigitalClock.getMessagePrefix() + ChatColor.GREEN + " Your clock '" + args[1] + "' changed filling material from " + oldmat + " to "+ clock.setFillingMaterial(m.getId(), 0).name().toLowerCase().replace("_", " "));
+							player.sendMessage(ChatColor.DARK_GREEN + DigitalClock.getMessagePrefix() + ChatColor.GREEN + " Your clock '" + args[1] + "' changed material from " + oldmat + " to "+ clock.changeMaterial(m).name().toLowerCase().replace("_", " "));
 						} else {
 							player.sendMessage(ChatColor.DARK_RED + DigitalClock.getMessagePrefix() + ChatColor.RED + " You can't use "+ m.name().toLowerCase().replace("_", " ") +" as a material, because it is not a block (cuboid shape)!");			
 						}
